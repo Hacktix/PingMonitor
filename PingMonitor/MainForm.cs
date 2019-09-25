@@ -354,7 +354,7 @@ namespace PingMonitor
             this.titleLabel.Name = "titleLabel";
             this.titleLabel.Size = new System.Drawing.Size(151, 20);
             this.titleLabel.TabIndex = 0;
-            this.titleLabel.Text = "Ping Monitor V1.0";
+            this.titleLabel.Text = "Ping Monitor V1.1";
             // 
             // copyrightLabel
             // 
