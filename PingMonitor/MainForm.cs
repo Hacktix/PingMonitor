@@ -245,6 +245,8 @@ namespace PingMonitor
         private void onShow(object sender, EventArgs e)
         {
             this.drawMap();
+            this.WindowState = FormWindowState.Normal;
+            this.Bounds = Screen.PrimaryScreen.Bounds;
         }
 
         private void onMouseUp(object sender, MouseEventArgs e)
@@ -352,15 +354,15 @@ namespace PingMonitor
             this.titleLabel.Location = new System.Drawing.Point(10, 6);
             this.titleLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.titleLabel.Name = "titleLabel";
-            this.titleLabel.Size = new System.Drawing.Size(151, 20);
+            this.titleLabel.Size = new System.Drawing.Size(166, 20);
             this.titleLabel.TabIndex = 0;
-            this.titleLabel.Text = "Ping Monitor V1.1";
+            this.titleLabel.Text = "Ping Monitor V1.1.1";
             // 
             // copyrightLabel
             // 
             this.copyrightLabel.AutoSize = true;
             this.copyrightLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
-            this.copyrightLabel.Location = new System.Drawing.Point(165, 12);
+            this.copyrightLabel.Location = new System.Drawing.Point(180, 13);
             this.copyrightLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.copyrightLabel.Name = "copyrightLabel";
             this.copyrightLabel.Size = new System.Drawing.Size(128, 13);
@@ -369,6 +371,7 @@ namespace PingMonitor
             // 
             // closeButton
             // 
+            this.closeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.closeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.closeButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.closeButton.Location = new System.Drawing.Point(1883, 12);
@@ -381,6 +384,7 @@ namespace PingMonitor
             // 
             // minimizeButton
             // 
+            this.minimizeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.minimizeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.minimizeButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.minimizeButton.Location = new System.Drawing.Point(1852, 12);
@@ -393,6 +397,7 @@ namespace PingMonitor
             // 
             // helpButton
             // 
+            this.helpButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.helpButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.helpButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.helpButton.Location = new System.Drawing.Point(1821, 12);
@@ -460,6 +465,7 @@ namespace PingMonitor
             // 
             // statusLabel
             // 
+            this.statusLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.statusLabel.AutoSize = true;
             this.statusLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
             this.statusLabel.Location = new System.Drawing.Point(1672, 19);
