@@ -88,6 +88,14 @@ namespace PingMonitor
             }
         }
 
+        public void resetHistory()
+        {
+            StatusHistory = new DeviceStatus[612];
+            LastSuccessfulUpdate = DateTime.MinValue;
+            historyCounter = 0;
+            historyIndex = 0;
+        }
+
         private void updateLog()
         {
             if(lastStatus != this.Status)

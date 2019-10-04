@@ -25,6 +25,7 @@ namespace PingMonitor
         private int dragOffY = 0;
         private int dragIndex = -1;
         private int selectedIndex = -1;
+        private Image deviceImage = Image.FromFile("device.png");
         private IContainer components = (IContainer)null;
         private Label titleLabel;
         private Label copyrightLabel;
@@ -111,7 +112,7 @@ namespace PingMonitor
                     graphics.Clear(Color.FromArgb(20, 20, 20));
                     foreach (Device device in MainForm.devices)
                     {
-                        graphics.DrawImage(Image.FromFile("device.png"), device.X - 32, device.Y - 32);
+                        graphics.DrawImage(deviceImage, device.X - 32, device.Y - 32);
                         Brush brush = (Brush)new SolidBrush(device.Status == DeviceStatus.Pending ? Color.Gray : (device.Status == DeviceStatus.Online ? device.OnlineColor : (device.Status == DeviceStatus.Offline ? device.OfflineColor : device.ArpErrorColor)));
                         SizeF sizeF = graphics.MeasureString(device.Name, new FontConverter().ConvertFromString("Microsoft Sans Serif") as Font);
                         float width1 = sizeF.Width;
@@ -136,6 +137,7 @@ namespace PingMonitor
         private void addDevice(Device device)
         {
             this.exportButton.Enabled = true;
+            device.resetHistory();
             MainForm.devices.Add(device);
             if (device.EnableARP)
             {
@@ -356,7 +358,7 @@ namespace PingMonitor
             this.titleLabel.Name = "titleLabel";
             this.titleLabel.Size = new System.Drawing.Size(166, 20);
             this.titleLabel.TabIndex = 0;
-            this.titleLabel.Text = "Ping Monitor V1.1.1";
+            this.titleLabel.Text = "Ping Monitor V1.1.2";
             // 
             // copyrightLabel
             // 
@@ -494,7 +496,7 @@ namespace PingMonitor
             this.AutoScaleDimensions = new System.Drawing.SizeF(5F, 9F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
-            this.ClientSize = new System.Drawing.Size(1920, 1080);
+            this.ClientSize = new System.Drawing.Size(1920, 1061);
             this.Controls.Add(this.statusLabel);
             this.Controls.Add(this.helpButton);
             this.Controls.Add(this.minimizeButton);
