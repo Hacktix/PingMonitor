@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
+using System.Net;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -42,6 +43,7 @@ namespace PingMonitor
         private ToolStripMenuItem exportButton;
         private SaveFileDialog exportDialog;
         private OpenFileDialog importDialog;
+        private Random rnd = new Random();
 
         public MainForm()
         {
@@ -160,6 +162,7 @@ namespace PingMonitor
         {
             while (true)
             {
+                DeviceStatus lastStat = device.Status;
                 try
                 {
                     device.CheckARP();
@@ -167,7 +170,8 @@ namespace PingMonitor
                 catch (Exception ex)
                 {
                 }
-                this.drawMap();
+                if(lastStat != device.Status)
+                    this.drawMap();
                 Thread.Sleep(device.ARPInterval);
             }
         }
@@ -176,6 +180,7 @@ namespace PingMonitor
         {
             while (true)
             {
+                DeviceStatus lastStat = device.Status;
                 try
                 {
                     device.Check();
@@ -183,7 +188,8 @@ namespace PingMonitor
                 catch (Exception ex)
                 {
                 }
-                this.drawMap();
+                if (lastStat != device.Status)
+                    this.drawMap();
                 Thread.Sleep(device.PingInterval);
             }
         }
@@ -212,7 +218,24 @@ namespace PingMonitor
 
         private void onHelp(object sender, EventArgs e)
         {
+            // addTestDevices();
             int num = (int)new HelpForm().ShowDialog();
+        }
+
+        private void addTestDevices()
+        {
+            for(int x = 50; x <= 1000; x += 100)
+            {
+                for(int y = 50; y <= 500; y += 100)
+                {
+                    addDevice(new Device(x, y, Color.Green, Color.Red, Color.Orange, "Test Device", "", IPAddress.Parse(randomInt() + "." + randomInt() + "." + randomInt() + "." + randomInt()), 1000, 50));
+                }
+            }
+        }
+
+        private int randomInt()
+        {
+            return rnd.Next(0, 255);
         }
 
         private void onClick(object sender, MouseEventArgs e)
@@ -299,7 +322,9 @@ namespace PingMonitor
             this.statusLabel.Visible = false;
             devices.Clear();
             foreach (Device device in Serializer.Load<List<Device>>(this.importDialog.FileName))
+            {
                 this.addDevice(device);
+            }
         }
 
         private void onEditDevice(object sender, EventArgs e)

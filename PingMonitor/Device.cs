@@ -43,6 +43,8 @@ namespace PingMonitor
         private int historyIndex = 0;
         private DeviceStatus lastStatus = DeviceStatus.Pending;
 
+        byte[] bytes = Encoding.ASCII.GetBytes("Ping Monitor(tm) (c) Markus Zechner 2019");
+
         private bool init = false;
 
         public Device(int x, int y, Color onlineColor, Color offlineColor, Color arpErrorColor, string name, string description, IPAddress iP, int pingInterval, int pingTimeout)
@@ -116,7 +118,6 @@ namespace PingMonitor
             Ping ping = new Ping();
             PingOptions options = new PingOptions();
             options.DontFragment = true;
-            byte[] bytes = Encoding.ASCII.GetBytes("Ping Monitor(tm) (c) Markus Zechner 2019");
             PingReply pingReply = (PingReply)null;
             try
             {
