@@ -218,19 +218,7 @@ namespace PingMonitor
 
         private void onHelp(object sender, EventArgs e)
         {
-            // addTestDevices();
             int num = (int)new HelpForm().ShowDialog();
-        }
-
-        private void addTestDevices()
-        {
-            for(int x = 50; x <= 1000; x += 100)
-            {
-                for(int y = 50; y <= 500; y += 100)
-                {
-                    addDevice(new Device(x, y, Color.Green, Color.Red, Color.Orange, "Test Device", "", IPAddress.Parse(randomInt() + "." + randomInt() + "." + randomInt() + "." + randomInt()), 1000, 50));
-                }
-            }
         }
 
         private int randomInt()
@@ -240,6 +228,7 @@ namespace PingMonitor
 
         private void onClick(object sender, MouseEventArgs e)
         {
+            drawMap();
             this.selectedIndex = this.getSelectedDeviceIndex();
             if (e.Button != MouseButtons.Right)
                 return;
@@ -381,15 +370,15 @@ namespace PingMonitor
             this.titleLabel.Location = new System.Drawing.Point(10, 6);
             this.titleLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.titleLabel.Name = "titleLabel";
-            this.titleLabel.Size = new System.Drawing.Size(166, 20);
+            this.titleLabel.Size = new System.Drawing.Size(151, 20);
             this.titleLabel.TabIndex = 0;
-            this.titleLabel.Text = "Ping Monitor V1.1.2";
+            this.titleLabel.Text = "Ping Monitor V1.2";
             // 
             // copyrightLabel
             // 
             this.copyrightLabel.AutoSize = true;
             this.copyrightLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
-            this.copyrightLabel.Location = new System.Drawing.Point(180, 13);
+            this.copyrightLabel.Location = new System.Drawing.Point(165, 13);
             this.copyrightLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.copyrightLabel.Name = "copyrightLabel";
             this.copyrightLabel.Size = new System.Drawing.Size(128, 13);
@@ -536,6 +525,7 @@ namespace PingMonitor
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Ping Monitor";
             this.Shown += new System.EventHandler(this.onShow);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.onPaint);
             this.DoubleClick += new System.EventHandler(this.onDoubleClick);
             this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.onClick);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.onMouseDown);
@@ -545,6 +535,11 @@ namespace PingMonitor
             this.ResumeLayout(false);
             this.PerformLayout();
 
+        }
+
+        private void onPaint(object sender, PaintEventArgs e)
+        {
+            drawMap();
         }
     }
 }
